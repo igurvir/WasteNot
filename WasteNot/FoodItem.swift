@@ -1,6 +1,6 @@
 import Foundation
 
-struct FoodItem: Identifiable, Codable {
+struct FoodItem: Identifiable, Codable, Equatable {
     let id: UUID
     var name: String
     var expiryDate: Date
@@ -17,5 +17,13 @@ struct FoodItem: Identifiable, Codable {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         return formatter.string(from: self.expiryDate)
+    }
+
+    // Conformance to Equatable
+    static func == (lhs: FoodItem, rhs: FoodItem) -> Bool {
+        return lhs.id == rhs.id &&
+               lhs.name == rhs.name &&
+               lhs.expiryDate == rhs.expiryDate &&
+               lhs.recipeLink == rhs.recipeLink
     }
 }

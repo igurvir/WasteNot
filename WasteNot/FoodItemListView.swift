@@ -9,6 +9,8 @@ struct FoodItemListView: View {
     @State private var filterOption: FilterOption = .none
     @State private var searchText: String = ""
     @State private var showingRecipeView = false
+    @State private var showingDeleteAllConfirmation = false
+    @State private var deletingAllItems = false
 
     enum SortOption: String, CaseIterable {
         case name = "Name"
@@ -29,7 +31,6 @@ struct FoodItemListView: View {
                     .padding(.top, 30)
                     .opacity(showingRecipeView ? 0.5 : 1.0)  // Title animation
                     .animation(.easeInOut(duration: 0.3), value: showingRecipeView)  // Updated animation
-
                 
                 // Search Bar
                 SearchBar(text: $searchText)
@@ -105,13 +106,23 @@ struct FoodItemListView: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        print("Book icon clicked")
-                        showingRecipeView = true
-                    }) {
-                        Image(systemName: "book")
-                            .scaleEffect(showingRecipeView ? 1.2 : 1.0)  // Button scale animation
-                            .animation(.easeInOut(duration: 0.3), value: showingRecipeView)  // Updated animation
+                    HStack {
+                        Button(action: {
+                            showingRecipeView = true
+                        }) {
+                            Image(systemName: "book")
+                                .scaleEffect(showingRecipeView ? 1.2 : 1.0)  // Button scale animation
+                                .animation(.easeInOut(duration: 0.3), value: showingRecipeView)  // Updated animation
+                        }
+
+                        Button(action: {
+                            showingDeleteAllConfirmation = true
+                        }) {
+                            Image(systemName: "trash")
+                                .foregroundColor(.red)
+                        }
+                        .disabled(foodItems.isEmpty)  // Disable the button if no items are present
+                        .animation(.easeInOut(duration: 0.3), value: foodItems)  // Add animation to button state changes
                     }
                 }
             }
@@ -133,6 +144,18 @@ struct FoodItemListView: View {
                                           .map { $0 }
                 
                 RecipeView(foodItems: top3Items)  // Pass the top 3 items
+            }
+            .alert(isPresented: $showingDeleteAllConfirmation) {
+                Alert(
+                    title: Text("Delete All Items"),
+                    message: Text("Are you sure you want to delete all items?"),
+                    primaryButton: .destructive(Text("Delete")) {
+                        withAnimation {
+                            deleteAllItems()
+                        }
+                    },
+                    secondaryButton: .cancel()
+                )
             }
             .onAppear {
                 loadFoodItems()  // Load saved food items
@@ -174,7 +197,9 @@ struct FoodItemListView: View {
     
     func deleteItem(_ item: FoodItem) {
         if let index = foodItems.firstIndex(where: { $0.id == item.id }) {
-            foodItems.remove(at: index)
+            withAnimation {
+                foodItems.remove(at: index)
+            }
             let notificationIDs = [
                 item.id.uuidString + "-immediate",
                 item.id.uuidString + "-24hr"
@@ -182,6 +207,13 @@ struct FoodItemListView: View {
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: notificationIDs)
             saveFoodItems()  // Save the updated list
         }
+    }
+
+    func deleteAllItems() {
+        foodItems.removeAll()
+        let notificationIDs = foodItems.map { $0.id.uuidString + "-immediate" }
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: notificationIDs)
+        saveFoodItems()  // Save the empty list
     }
 
     func saveFoodItems() {

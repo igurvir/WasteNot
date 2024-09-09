@@ -15,8 +15,12 @@ struct AddFoodItemView: View {
                 TextField("Food Item Name", text: $name)
 
                 // Expiry Date Picker
-                DatePicker("Expiry Date", selection: $expiryDate, displayedComponents: .date)
-                    .datePickerStyle(WheelDatePickerStyle())
+                Section(header: Text("Select Expiration Date").font(.headline)) {
+                                   DatePicker("",
+                                              selection: $expiryDate,
+                                              displayedComponents: .date)
+                                       .datePickerStyle(WheelDatePickerStyle())
+                               }
 
                 // Save Button
                 Button(action: {
