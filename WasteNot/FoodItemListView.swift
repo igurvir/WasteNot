@@ -117,8 +117,15 @@ struct FoodItemListView: View {
                 }, itemToEdit: itemToEdit)
             }
             .sheet(isPresented: $showingRecipeView) {
-                RecipeView(foodItems: foodItems)  // Pass the array of foodItems
+                // Fetch top 3 items with earliest expiration dates
+                let top3Items = foodItems.sorted { $0.expiryDate < $1.expiryDate }
+                                          .prefix(3)
+                                          .map { $0 }
+                
+                RecipeView(foodItems: top3Items)  // Pass the top 3 items
             }
+
+
             .onAppear {
                 loadFoodItems()  // Load saved food items
             }

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RecipeView: View {
-    var foodItems: [FoodItem]
+    @State var foodItems: [FoodItem]
     @State private var recipes: [Recipe] = []
     @State private var isLoading: Bool = false
     @State private var error: String?
@@ -21,13 +21,12 @@ struct RecipeView: View {
                 Text("No recipes found for the provided ingredients.")
                     .foregroundColor(.gray)
             } else {
-                List(recipes.prefix(3)) { recipe in
+                List(recipes) { recipe in
                     VStack(alignment: .leading) {
                         Text(recipe.label)
                             .font(.headline)
                         
                         Button("Open Recipe") {
-                            print("Recipe URL: \(recipe.url)")  // Debugging line
                             if let url = URL(string: recipe.url) {
                                 UIApplication.shared.open(url)
                             } else {
@@ -46,7 +45,7 @@ struct RecipeView: View {
     }
     
     private func fetchRecipes() {
-        let foodNames = foodItems.map { $0.name }.prefix(2).joined(separator: ",") // Only using the first 2 items for testing
+        let foodNames = foodItems.map { $0.name }.joined(separator: ",") // Combine all items
         print("Combined food names: \(foodNames)")
         
         guard let encodedFoodNames = foodNames.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
@@ -79,7 +78,7 @@ struct RecipeView: View {
                 
                 do {
                     let response = try JSONDecoder().decode(RecipeResponse.self, from: data)
-                    self.recipes = response.hits.prefix(3).map { $0.recipe }
+                    self.recipes = response.hits.map { $0.recipe }
                     
                     // Debugging: Print decoded recipes
                     print("Decoded recipes: \(self.recipes)")
@@ -105,5 +104,12 @@ struct RecipeView: View {
         struct Hit: Codable {
             let recipe: Recipe
         }
+    }
+    
+    // Model for Recipe
+    struct Recipe: Identifiable, Codable {
+        let id = UUID()
+        let label: String
+        let url: String
     }
 }
