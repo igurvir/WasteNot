@@ -8,9 +8,11 @@
 import Foundation
 
 struct ShoppingItem: Identifiable, Codable {
-    var id = UUID()
+    let id = UUID()
     var name: String
     var quantity: String
+    var category: String  // Ensure this field is included
     var purchased: Bool
 }
+
 

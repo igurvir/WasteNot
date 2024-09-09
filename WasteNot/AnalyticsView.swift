@@ -15,7 +15,7 @@ struct AnalyticsView: View {
 
     var body: some View {
         VStack {
-            Text("Food Expiry Analytics (Current Month)")
+            Text("Food Expiry Analytics")
                 .font(.system(size: 24, weight: .bold))
                 .padding()
 

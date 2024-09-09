@@ -8,6 +8,7 @@ struct ShoppingListView: View {
     }
     @State private var newItemName: String = ""
     @State private var newItemQuantity: String = ""  // Quantity as a string
+    @State private var newItemCategory: String = "Other"  // Default category
     @State private var itemToEdit: ShoppingItem? = nil  // Track the item being edited
 
     // Focus states to manage keyboard visibility
@@ -16,6 +17,9 @@ struct ShoppingListView: View {
 
     @State private var showingAlert = false
     @State private var alertMessage = ""
+
+    // List of categories for the dropdown
+    let categories = ["Dairy", "Meat", "Fruit", "Snacks","Other"]
 
     var body: some View {
         NavigationView {
@@ -33,6 +37,15 @@ struct ShoppingListView: View {
                         .keyboardType(.default)  // Use the default keyboard
                         .focused($isQuantityFieldFocused)  // Bind the focus state
 
+                    // Category Picker Dropdown
+                    Picker("Category", selection: $newItemCategory) {
+                        ForEach(categories, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle())  // Display as a dropdown menu
+                    .frame(width: 100)  // Adjust the width of the picker
+
                     Button(action: addItem) {
                         Image(systemName: "plus.circle.fill")
                             .foregroundColor(.green)
@@ -42,52 +55,59 @@ struct ShoppingListView: View {
                 }
                 .padding()
 
-                // List of Shopping Items
+                // List of Shopping Items grouped by category
                 List {
-                    ForEach(shoppingItems) { item in
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text(item.name)
-                                    .font(.headline)
-                                Text("Quantity: \(item.quantity)")
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                            }
-                            Spacer()
+                    // Loop through each category and display items under that category if they exist
+                    ForEach(categories, id: \.self) { category in
+                        let categoryItems = shoppingItems.filter { $0.category == category }
+                        if !categoryItems.isEmpty {
+                            Section(header: Text(category).font(.headline)) {
+                                ForEach(categoryItems) { item in
+                                    HStack {
+                                        VStack(alignment: .leading) {
+                                            Text(item.name)
+                                                .font(.headline)
+                                            Text("Quantity: \(item.quantity)")
+                                                .font(.subheadline)
+                                                .foregroundColor(.gray)
+                                        }
+                                        Spacer()
 
-                            // Button to open URL
-                            Button(action: {
-                                openGroceryStore(for: item)
-                            }) {
-                                Image(systemName: "link.circle.fill")
-                                    .foregroundColor(.blue)
-                                    .font(.title2)
-                                    .opacity(item.purchased ? 0.3 : 1.0)
-                            }
-                            .buttonStyle(BorderlessButtonStyle())    // Ensures that only this button triggers the action
+                                        // Walmart Redirection Button
+                                        Button(action: {
+                                            openGroceryStore(for: item)  // Call the function to redirect
+                                        }) {
+                                            Image(systemName: "link.circle.fill")
+                                                .foregroundColor(.blue)
+                                                .font(.title2)
+                                                .opacity(item.purchased ? 0.3 : 1.0)
+                                        }
+                                        .buttonStyle(BorderlessButtonStyle())  // Ensures that only this button triggers the action
 
-                            // Check button for marking an item as purchased
-                            Button(action: {
-                                markAsPurchased(item: item)
-                            }) {
-                                Image(systemName: item.purchased ? "checkmark.circle.fill" : "circle")
-                                    .foregroundColor(item.purchased ? .green : .gray)
-                                    .font(.title2)
+                                        // Check button for marking an item as purchased
+                                        Button(action: {
+                                            markAsPurchased(item: item)
+                                        }) {
+                                            Image(systemName: item.purchased ? "checkmark.circle.fill" : "circle")
+                                                .foregroundColor(item.purchased ? .green : .gray)
+                                                .font(.title2)
+                                        }
+                                        .buttonStyle(BorderlessButtonStyle())  // Ensures that only this button triggers the action
+
+                                        // Edit button for editing the item
+                                        Button(action: {
+                                            itemToEdit = item  // Set the item to be edited
+                                        }) {
+                                            Image(systemName: "pencil.circle.fill")
+                                                .foregroundColor(.blue)
+                                                .font(.title2)
+                                        }
+                                        .buttonStyle(BorderlessButtonStyle())  // Ensures that only this button triggers the edit action
+                                    }
+                                }
                             }
-                            .buttonStyle(BorderlessButtonStyle())  // Ensures that only this button triggers the action
-                            
-                            // Edit button for editing the item
-                            Button(action: {
-                                itemToEdit = item  // Set the item to be edited
-                            }) {
-                                Image(systemName: "pencil.circle.fill")
-                                    .foregroundColor(.blue)
-                                    .font(.title2)
-                            }
-                            .buttonStyle(BorderlessButtonStyle())  // Ensures that only this button triggers the edit action
                         }
                     }
-                    .onDelete(perform: deleteItem)
                 }
                 .navigationTitle("Shopping List")
                 .toolbar {
@@ -125,14 +145,26 @@ struct ShoppingListView: View {
     private func addItem() {
         guard !newItemName.isEmpty, !newItemQuantity.isEmpty else { return }
 
-        let newItem = ShoppingItem(name: newItemName, quantity: newItemQuantity, purchased: false)
+        let newItem = ShoppingItem(name: newItemName, quantity: newItemQuantity, category: newItemCategory, purchased: false)
         shoppingItems.append(newItem)
 
         // Clear input fields and dismiss the keyboard
         newItemName = ""
         newItemQuantity = ""
+        newItemCategory = "Other"  // Reset the category picker
         isItemNameFieldFocused = false
         isQuantityFieldFocused = false
+    }
+
+    // Function to redirect to Walmart search for the item
+    private func openGroceryStore(for item: ShoppingItem) {
+        guard !item.purchased else { return }  // Ensure the item is not purchased
+
+        let encodedItemName = item.name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let urlString = "https://www.walmart.ca/search?q=\(encodedItemName)"
+        if let url = URL(string: urlString) {
+            UIApplication.shared.open(url)
+        }
     }
 
     // Mark an item as purchased
@@ -230,17 +262,6 @@ struct ShoppingListView: View {
         // Present the share sheet
         if let window = UIApplication.shared.windows.first {
             window.rootViewController?.present(activityViewController, animated: true, completion: nil)
-        }
-    }
-
-    // Function to open a URL
-    private func openGroceryStore(for item: ShoppingItem) {
-        guard !item.purchased else { return }  // Check if the item is purchased
-
-        let encodedItemName = item.name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        let urlString = "https://www.walmart.ca/search?q=\(encodedItemName)"
-        if let url = URL(string: urlString) {
-            UIApplication.shared.open(url)
         }
     }
 }
