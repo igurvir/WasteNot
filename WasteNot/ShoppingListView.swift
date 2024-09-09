@@ -62,8 +62,9 @@ struct ShoppingListView: View {
                                 Image(systemName: "link.circle.fill")
                                     .foregroundColor(.blue)
                                     .font(.title2)
+                                    .opacity(item.purchased ? 0.3 : 1.0)
                             }
-                            .buttonStyle(BorderlessButtonStyle())  // Ensures that only this button triggers the action
+                            .buttonStyle(BorderlessButtonStyle())    // Ensures that only this button triggers the action
 
                             // Check button for marking an item as purchased
                             Button(action: {
@@ -234,6 +235,8 @@ struct ShoppingListView: View {
 
     // Function to open a URL
     private func openGroceryStore(for item: ShoppingItem) {
+        guard !item.purchased else { return }  // Check if the item is purchased
+
         let encodedItemName = item.name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         let urlString = "https://www.walmart.ca/search?q=\(encodedItemName)"
         if let url = URL(string: urlString) {
