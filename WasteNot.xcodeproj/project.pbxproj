@@ -25,6 +25,7 @@
 		E8CD808D2C8EA660009F1C09 /* FoodAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CD808C2C8EA660009F1C09 /* FoodAnalytics.swift */; };
 		E8CD80952C8EC010009F1C09 /* ShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CD80942C8EC010009F1C09 /* ShoppingListView.swift */; };
 		E8CD80972C8EC1EB009F1C09 /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CD80962C8EC1EB009F1C09 /* EditItemView.swift */; };
+		E8CD80A12C8F7CA9009F1C09 /* ShoppingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CD80A02C8F7CA9009F1C09 /* ShoppingItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		E8CD808C2C8EA660009F1C09 /* FoodAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodAnalytics.swift; sourceTree = "<group>"; };
 		E8CD80942C8EC010009F1C09 /* ShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListView.swift; sourceTree = "<group>"; };
 		E8CD80962C8EC1EB009F1C09 /* EditItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemView.swift; sourceTree = "<group>"; };
+		E8CD80A02C8F7CA9009F1C09 /* ShoppingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				E8CD808C2C8EA660009F1C09 /* FoodAnalytics.swift */,
 				E8CD808A2C8EA61B009F1C09 /* AnalyticsView.swift */,
 				E8CD80942C8EC010009F1C09 /* ShoppingListView.swift */,
+				E8CD80A02C8F7CA9009F1C09 /* ShoppingItem.swift */,
 				E8CD80962C8EC1EB009F1C09 /* EditItemView.swift */,
 				E8CD80572C8D3FFE009F1C09 /* Assets.xcassets */,
 				E8CD80592C8D3FFE009F1C09 /* Preview Content */,
@@ -181,6 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8CD80A12C8F7CA9009F1C09 /* ShoppingItem.swift in Sources */,
 				E8CD80952C8EC010009F1C09 /* ShoppingListView.swift in Sources */,
 				E8CD808D2C8EA660009F1C09 /* FoodAnalytics.swift in Sources */,
 				E8CD80682C8D4095009F1C09 /* NotificationManager.swift in Sources */,

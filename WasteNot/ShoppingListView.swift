@@ -14,6 +14,9 @@ struct ShoppingListView: View {
     @FocusState private var isItemNameFieldFocused: Bool
     @FocusState private var isQuantityFieldFocused: Bool
 
+    @State private var showingAlert = false
+    @State private var alertMessage = ""
+
     var body: some View {
         NavigationView {
             VStack {
@@ -76,6 +79,11 @@ struct ShoppingListView: View {
                 }
                 .navigationTitle("Shopping List")
                 .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button(action: shareShoppingList) {
+                            Text("Share")
+                        }
+                    }
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button(action: deletePurchasedItems) {
                             Text("Delete Purchased")
@@ -83,13 +91,18 @@ struct ShoppingListView: View {
                         }
                     }
                 }
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("Nothing to Share"),
+                          message: Text(alertMessage),
+                          dismissButton: .default(Text("OK")))
+                }
             }
             .sheet(item: $itemToEdit, onDismiss: {
                 itemToEdit = nil  // Reset after dismiss
-            }) { item in  // Correctly pass the item to the EditItemView
+            }) { item in
                 EditItemView(item: Binding(
-                    get: { item },  // Get the current item for editing
-                    set: { itemToEdit = $0 }  // Update the item after editing
+                    get: { item },
+                    set: { itemToEdit = $0 }
                 ), saveAction: saveEditedItem)
             }
         }
@@ -151,12 +164,60 @@ struct ShoppingListView: View {
             shoppingItems = decoded
         }
     }
-}
 
-// Shopping item structure
-struct ShoppingItem: Identifiable, Codable {
-    let id = UUID()
-    var name: String
-    var quantity: String  // Quantity is now a string
-    var purchased: Bool
+    // Export shopping list to text with only unpurchased items
+    private func exportToText() -> String {
+        var text = "Shopping List\n\n"
+        let unpurchasedItems = shoppingItems.filter { !$0.purchased }  // Filter out purchased items
+        for item in unpurchasedItems {
+            text += "\(item.name) - Quantity: \(item.quantity)\n"
+        }
+        return text
+    }
+
+    // Export shopping list to PDF with only unpurchased items
+    private func exportToPDF() -> Data? {
+        let pdfRenderer = UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: 600, height: 800))
+        let data = pdfRenderer.pdfData { context in
+            context.beginPage()
+            let text = exportToText()  // Reuse the text export function
+            let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)]
+            text.draw(at: CGPoint(x: 20, y: 20), withAttributes: attributes)
+        }
+        return data
+    }
+
+    // Share the shopping list via different methods
+    private func shareShoppingList() {
+        let unpurchasedItems = shoppingItems.filter { !$0.purchased }
+        if unpurchasedItems.isEmpty {
+            alertMessage = "The shopping list is empty or all items are checked."
+            showingAlert = true
+            return
+        }
+
+        // Generate PDF data
+        guard let pdfData = exportToPDF() else { return }
+
+        // Create a temporary file URL with the name "ShoppingList.pdf"
+        let fileManager = FileManager.default
+        let tempDir = fileManager.temporaryDirectory
+        let fileURL = tempDir.appendingPathComponent("ShoppingList.pdf")
+
+        // Write the PDF data to the file
+        do {
+            try pdfData.write(to: fileURL)
+        } catch {
+            print("Error saving PDF: \(error)")
+            return
+        }
+
+        // Create the share sheet
+        let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+
+        // Present the share sheet
+        if let window = UIApplication.shared.windows.first {
+            window.rootViewController?.present(activityViewController, animated: true, completion: nil)
+        }
+    }
 }
