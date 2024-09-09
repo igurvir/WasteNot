@@ -200,20 +200,30 @@ struct FoodItemListView: View {
             withAnimation {
                 foodItems.remove(at: index)
             }
+
+            if item.expiryDate < Date() {
+                // Log this item as expired
+                FoodAnalytics.shared.logExpiredItem(item.name)
+            }
+
             let notificationIDs = [
                 item.id.uuidString + "-immediate",
                 item.id.uuidString + "-24hr"
             ]
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: notificationIDs)
-            saveFoodItems()  // Save the updated list
+            saveFoodItems()
         }
     }
 
     func deleteAllItems() {
+        for item in foodItems {
+            if item.expiryDate < Date() {
+                // Log expired items before deletion
+                FoodAnalytics.shared.logExpiredItem(item.name)
+            }
+        }
         foodItems.removeAll()
-        let notificationIDs = foodItems.map { $0.id.uuidString + "-immediate" }
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: notificationIDs)
-        saveFoodItems()  // Save the empty list
+        saveFoodItems()
     }
 
     func saveFoodItems() {

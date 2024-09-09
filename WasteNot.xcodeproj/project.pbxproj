@@ -21,6 +21,8 @@
 		E8CD80772C8E6437009F1C09 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CD80762C8E6437009F1C09 /* RecipeView.swift */; };
 		E8CD807B2C8E6EB4009F1C09 /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CD807A2C8E6EB4009F1C09 /* RecipeDetailView.swift */; };
 		E8CD807D2C8E7217009F1C09 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CD807C2C8E7217009F1C09 /* Recipe.swift */; };
+		E8CD808B2C8EA61C009F1C09 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CD808A2C8EA61B009F1C09 /* AnalyticsView.swift */; };
+		E8CD808D2C8EA660009F1C09 /* FoodAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CD808C2C8EA660009F1C09 /* FoodAnalytics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		E8CD80762C8E6437009F1C09 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		E8CD807A2C8E6EB4009F1C09 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
 		E8CD807C2C8E7217009F1C09 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		E8CD808A2C8EA61B009F1C09 /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
+		E8CD808C2C8EA660009F1C09 /* FoodAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodAnalytics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,8 @@
 				E8CD80762C8E6437009F1C09 /* RecipeView.swift */,
 				E8CD807C2C8E7217009F1C09 /* Recipe.swift */,
 				E8CD80652C8D4083009F1C09 /* AppDelegate.swift */,
+				E8CD808C2C8EA660009F1C09 /* FoodAnalytics.swift */,
+				E8CD808A2C8EA61B009F1C09 /* AnalyticsView.swift */,
 				E8CD80572C8D3FFE009F1C09 /* Assets.xcassets */,
 				E8CD80592C8D3FFE009F1C09 /* Preview Content */,
 				E8CD806B2C8D5457009F1C09 /* TestSwipeActionsView.swift */,
@@ -169,6 +175,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8CD808D2C8EA660009F1C09 /* FoodAnalytics.swift in Sources */,
 				E8CD80682C8D4095009F1C09 /* NotificationManager.swift in Sources */,
 				E8CD806C2C8D5457009F1C09 /* TestSwipeActionsView.swift in Sources */,
 				E8CD80562C8D3FFC009F1C09 /* ContentView.swift in Sources */,
@@ -180,6 +187,7 @@
 				E8CD807B2C8E6EB4009F1C09 /* RecipeDetailView.swift in Sources */,
 				E8CD806A2C8D5084009F1C09 /* FoodItemListView.swift in Sources */,
 				E8CD80662C8D4083009F1C09 /* AppDelegate.swift in Sources */,
+				E8CD808B2C8EA61C009F1C09 /* AnalyticsView.swift in Sources */,
 				E8CD80642C8D405D009F1C09 /* AddFoodItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
