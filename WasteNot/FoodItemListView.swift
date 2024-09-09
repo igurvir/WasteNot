@@ -5,7 +5,7 @@ struct FoodItemListView: View {
     @State private var foodItems: [FoodItem] = []
     @State private var showingAddEditScreen = false
     @State private var itemToEdit: FoodItem?
-    @State private var sortOption: SortOption = .name
+    @State private var sortOption: SortOption = .expiryDate
     @State private var filterOption: FilterOption = .none
     @State private var searchText: String = ""
     @State private var showingRecipeView = false
@@ -25,8 +25,11 @@ struct FoodItemListView: View {
             VStack {
                 // Navigation Title
                 Text("Food Inventory")
-                    .font(.largeTitle)
+                    .font(.system(size: 34, weight: .bold)) // Use system font with custom size and weight
                     .padding(.top, 30)
+                    .opacity(showingRecipeView ? 0.5 : 1.0)  // Title animation
+                    .animation(.easeInOut(duration: 0.3), value: showingRecipeView)  // Updated animation
+
                 
                 // Search Bar
                 SearchBar(text: $searchText)
@@ -34,6 +37,8 @@ struct FoodItemListView: View {
                 
                 // Sorting and Filtering Controls
                 HStack {
+                    Spacer()
+                    
                     Picker("Sort by", selection: $sortOption) {
                         ForEach(SortOption.allCases, id: \.self) { option in
                             Text(option.rawValue).tag(option)
@@ -41,12 +46,16 @@ struct FoodItemListView: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     
+                    Spacer()
+                    
                     Picker("Filter by", selection: $filterOption) {
                         ForEach(FilterOption.allCases, id: \.self) { option in
                             Text(option.rawValue).tag(option)
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
+                    
+                    Spacer()
                 }
                 .padding(.horizontal)
                 .padding(.bottom, 10)
@@ -64,7 +73,6 @@ struct FoodItemListView: View {
                             }
                         }
                         .swipeActions(edge: .leading) {
-                            // Swipe right to edit
                             Button {
                                 itemToEdit = item
                                 showingAddEditScreen = true
@@ -74,7 +82,6 @@ struct FoodItemListView: View {
                             .tint(.blue)
                         }
                         .swipeActions(edge: .trailing) {
-                            // Swipe left to delete
                             Button(role: .destructive) {
                                 deleteItem(item)
                             } label: {
@@ -82,26 +89,29 @@ struct FoodItemListView: View {
                             }
                         }
                     }
+                    .transition(.slide)  // Custom transition for list items
                 }
             }
             .toolbar {
-                // Add Button
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
                         itemToEdit = nil
                         showingAddEditScreen = true
                     }) {
                         Image(systemName: "plus")
+                            .scaleEffect(showingAddEditScreen ? 1.2 : 1.0)  // Button scale animation
+                            .animation(.easeInOut(duration: 0.3), value: showingAddEditScreen)  // Updated animation
                     }
                 }
                 
-                // Find Recipes Button
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         print("Book icon clicked")
                         showingRecipeView = true
                     }) {
                         Image(systemName: "book")
+                            .scaleEffect(showingRecipeView ? 1.2 : 1.0)  // Button scale animation
+                            .animation(.easeInOut(duration: 0.3), value: showingRecipeView)  // Updated animation
                     }
                 }
             }
@@ -115,28 +125,24 @@ struct FoodItemListView: View {
                     saveFoodItems()  // Save the updated list
                     showingAddEditScreen = false  // Close the sheet
                 }, itemToEdit: itemToEdit)
+                .transition(.move(edge: .bottom))  // Add transition animation
             }
             .sheet(isPresented: $showingRecipeView) {
-                // Fetch top 3 items with earliest expiration dates
                 let top3Items = foodItems.sorted { $0.expiryDate < $1.expiryDate }
                                           .prefix(3)
                                           .map { $0 }
                 
                 RecipeView(foodItems: top3Items)  // Pass the top 3 items
             }
-
-
             .onAppear {
                 loadFoodItems()  // Load saved food items
             }
         }
     }
     
-    // Sort and filter the list of food items
     private func filteredAndSortedItems() -> [FoodItem] {
         var items = foodItems
         
-        // Filtering
         switch filterOption {
         case .none:
             break
@@ -144,12 +150,10 @@ struct FoodItemListView: View {
             items = items.filter { $0.expiryDate < Date().addingTimeInterval(3 * 24 * 60 * 60) }
         }
         
-        // Searching
         if !searchText.isEmpty {
             items = items.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
         }
         
-        // Sorting
         switch sortOption {
         case .name:
             items.sort { $0.name < $1.name }
@@ -160,16 +164,14 @@ struct FoodItemListView: View {
         return items
     }
     
-    // Determine text color based on expiration status
     private func expiredTextColor(for item: FoodItem) -> Color {
         if item.expiryDate < Date() {
-            return Color.red  // Red text for expired items
+            return Color.red
         } else {
             return Color.primary
         }
     }
     
-    // Delete a food item
     func deleteItem(_ item: FoodItem) {
         if let index = foodItems.firstIndex(where: { $0.id == item.id }) {
             foodItems.remove(at: index)
@@ -182,7 +184,6 @@ struct FoodItemListView: View {
         }
     }
 
-    // Save food items to UserDefaults
     func saveFoodItems() {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(foodItems) {
@@ -190,7 +191,6 @@ struct FoodItemListView: View {
         }
     }
 
-    // Load food items from UserDefaults
     func loadFoodItems() {
         if let savedFoodItems = UserDefaults.standard.data(forKey: "foodItems") {
             let decoder = JSONDecoder()

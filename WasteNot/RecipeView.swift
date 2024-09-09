@@ -12,6 +12,10 @@ struct RecipeView: View {
     
     var body: some View {
         VStack {
+            Text("Recipe Recommendations")
+                            .font(.system(size: 20, weight: .semibold)) // Smaller Apple system font
+                            .padding(.top, 20)
+                            .padding(.horizontal)
             if isLoading {
                 ProgressView("Loading...")
             } else if let error = error {
