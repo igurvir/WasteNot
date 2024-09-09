@@ -54,6 +54,17 @@ struct ShoppingListView: View {
                                     .foregroundColor(.gray)
                             }
                             Spacer()
+
+                            // Button to open URL
+                            Button(action: {
+                                openGroceryStore(for: item)
+                            }) {
+                                Image(systemName: "link.circle.fill")
+                                    .foregroundColor(.blue)
+                                    .font(.title2)
+                            }
+                            .buttonStyle(BorderlessButtonStyle())  // Ensures that only this button triggers the action
+
                             // Check button for marking an item as purchased
                             Button(action: {
                                 markAsPurchased(item: item)
@@ -218,6 +229,15 @@ struct ShoppingListView: View {
         // Present the share sheet
         if let window = UIApplication.shared.windows.first {
             window.rootViewController?.present(activityViewController, animated: true, completion: nil)
+        }
+    }
+
+    // Function to open a URL
+    private func openGroceryStore(for item: ShoppingItem) {
+        let encodedItemName = item.name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let urlString = "https://www.walmart.ca/search?q=\(encodedItemName)"
+        if let url = URL(string: urlString) {
+            UIApplication.shared.open(url)
         }
     }
 }
