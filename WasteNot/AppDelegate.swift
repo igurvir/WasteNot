@@ -1,5 +1,6 @@
 import UIKit
 import UserNotifications
+import Firebase  // Add Firebase import
 
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
@@ -16,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 print("Notification permission error: \(error.localizedDescription)")
             }
         }
+
+        // Configure Firebase
+        FirebaseApp.configure()
 
         return true
     }
