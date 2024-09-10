@@ -1,10 +1,9 @@
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '10.0'
+platform :ios, '13.0'
 
 target 'WasteNot' do
   use_frameworks!
-
-  # Pods for Firebase Core and Firestore
+  
+  # Firebase dependencies
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
 end

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		19D5B145B317E9219946BE8F /* Pods_WasteNot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC93F5E715C617BFED31D00E /* Pods_WasteNot.framework */; };
-		E8BF1C122C8FC0D6001FCF06 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E8BF1C112C8FC0D6001FCF06 /* GoogleService-Info.plist */; };
+		E8BF1C142C8FFC07001FCF06 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E8BF1C132C8FFC07001FCF06 /* GoogleService-Info.plist */; };
 		E8CD80542C8D3FFC009F1C09 /* WasteNotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CD80532C8D3FFC009F1C09 /* WasteNotApp.swift */; };
 		E8CD80562C8D3FFC009F1C09 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CD80552C8D3FFC009F1C09 /* ContentView.swift */; };
 		E8CD80582C8D3FFE009F1C09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8CD80572C8D3FFE009F1C09 /* Assets.xcassets */; };
@@ -27,13 +27,12 @@
 		E8CD808D2C8EA660009F1C09 /* FoodAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CD808C2C8EA660009F1C09 /* FoodAnalytics.swift */; };
 		E8CD80952C8EC010009F1C09 /* ShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CD80942C8EC010009F1C09 /* ShoppingListView.swift */; };
 		E8CD80972C8EC1EB009F1C09 /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CD80962C8EC1EB009F1C09 /* EditItemView.swift */; };
-		E8CD80A12C8F7CA9009F1C09 /* ShoppingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CD80A02C8F7CA9009F1C09 /* ShoppingItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1606B2DC456B4424B158ACC4 /* Pods-WasteNot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WasteNot.debug.xcconfig"; path = "Target Support Files/Pods-WasteNot/Pods-WasteNot.debug.xcconfig"; sourceTree = "<group>"; };
 		57E3A6571BEC4C909AD229B2 /* Pods-WasteNot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WasteNot.release.xcconfig"; path = "Target Support Files/Pods-WasteNot/Pods-WasteNot.release.xcconfig"; sourceTree = "<group>"; };
-		E8BF1C112C8FC0D6001FCF06 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E8BF1C132C8FFC07001FCF06 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E8CD80502C8D3FFC009F1C09 /* WasteNot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WasteNot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8CD80532C8D3FFC009F1C09 /* WasteNotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WasteNotApp.swift; sourceTree = "<group>"; };
 		E8CD80552C8D3FFC009F1C09 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,7 +53,6 @@
 		E8CD808C2C8EA660009F1C09 /* FoodAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodAnalytics.swift; sourceTree = "<group>"; };
 		E8CD80942C8EC010009F1C09 /* ShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListView.swift; sourceTree = "<group>"; };
 		E8CD80962C8EC1EB009F1C09 /* EditItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemView.swift; sourceTree = "<group>"; };
-		E8CD80A02C8F7CA9009F1C09 /* ShoppingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItem.swift; sourceTree = "<group>"; };
 		FC93F5E715C617BFED31D00E /* Pods_WasteNot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WasteNot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -109,7 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				E8CD806F2C8D5BFD009F1C09 /* Info.plist */,
-				E8BF1C112C8FC0D6001FCF06 /* GoogleService-Info.plist */,
+				E8BF1C132C8FFC07001FCF06 /* GoogleService-Info.plist */,
 				E8CD80532C8D3FFC009F1C09 /* WasteNotApp.swift */,
 				E8CD80552C8D3FFC009F1C09 /* ContentView.swift */,
 				E8CD80612C8D4046009F1C09 /* FoodItem.swift */,
@@ -124,7 +122,6 @@
 				E8CD808C2C8EA660009F1C09 /* FoodAnalytics.swift */,
 				E8CD808A2C8EA61B009F1C09 /* AnalyticsView.swift */,
 				E8CD80942C8EC010009F1C09 /* ShoppingListView.swift */,
-				E8CD80A02C8F7CA9009F1C09 /* ShoppingItem.swift */,
 				E8CD80962C8EC1EB009F1C09 /* EditItemView.swift */,
 				E8CD80572C8D3FFE009F1C09 /* Assets.xcassets */,
 				E8CD80592C8D3FFE009F1C09 /* Preview Content */,
@@ -152,7 +149,7 @@
 				E8CD804C2C8D3FFC009F1C09 /* Sources */,
 				E8CD804D2C8D3FFC009F1C09 /* Frameworks */,
 				E8CD804E2C8D3FFC009F1C09 /* Resources */,
-				CC02921AC2D11CB1142BBFC7 /* [CP] Embed Pods Frameworks */,
+				D77DD597E0E8B3549389A495 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -187,6 +184,9 @@
 				Base,
 			);
 			mainGroup = E8CD80472C8D3FFC009F1C09;
+			packageReferences = (
+				E8BF1C152C9001E9001FCF06 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = E8CD80512C8D3FFC009F1C09 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -203,7 +203,7 @@
 			files = (
 				E8CD805B2C8D3FFE009F1C09 /* Preview Assets.xcassets in Resources */,
 				E8CD80582C8D3FFE009F1C09 /* Assets.xcassets in Resources */,
-				E8BF1C122C8FC0D6001FCF06 /* GoogleService-Info.plist in Resources */,
+				E8BF1C142C8FFC07001FCF06 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,7 +232,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CC02921AC2D11CB1142BBFC7 /* [CP] Embed Pods Frameworks */ = {
+		D77DD597E0E8B3549389A495 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -256,7 +256,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8CD80A12C8F7CA9009F1C09 /* ShoppingItem.swift in Sources */,
 				E8CD80952C8EC010009F1C09 /* ShoppingListView.swift in Sources */,
 				E8CD808D2C8EA660009F1C09 /* FoodAnalytics.swift in Sources */,
 				E8CD80682C8D4095009F1C09 /* NotificationManager.swift in Sources */,
@@ -482,6 +481,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E8BF1C152C9001E9001FCF06 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = E8CD80482C8D3FFC009F1C09 /* Project object */;
 }

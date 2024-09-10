@@ -4,6 +4,9 @@ struct EditItemView: View {
     @Binding var item: ShoppingItem?  // The item to edit
     @State private var editedName: String = ""
     @State private var editedQuantity: String = ""
+    @State private var editedCategory: String = "Other"  // Default category
+    
+    let categories = ["Dairy", "Meat", "Fruit", "Snacks", "Other"]
     
     var saveAction: (ShoppingItem) -> Void  // Save action closure
 
@@ -13,6 +16,13 @@ struct EditItemView: View {
                 Section(header: Text("Edit Item")) {
                     TextField("Item Name", text: $editedName)
                     TextField("Quantity", text: $editedQuantity)
+                        .keyboardType(.numberPad)
+                    
+                    Picker("Category", selection: $editedCategory) {
+                        ForEach(categories, id: \.self) { category in
+                            Text(category)
+                        }
+                    }
                 }
             }
             .navigationTitle("Edit Item")
@@ -29,6 +39,7 @@ struct EditItemView: View {
                             var updatedItem = item
                             updatedItem.name = editedName
                             updatedItem.quantity = editedQuantity
+                            updatedItem.category = editedCategory
                             
                             saveAction(updatedItem)  // Call the save action
                             self.item = nil  // Dismiss the sheet
@@ -41,6 +52,7 @@ struct EditItemView: View {
                     // Set the fields with the current item values
                     editedName = item.name
                     editedQuantity = item.quantity
+                    editedCategory = item.category
                 }
             }
         }
