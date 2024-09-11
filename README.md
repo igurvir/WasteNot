@@ -93,3 +93,27 @@ Generates a PDF of the shopping list, excluding items marked as purchased, and a
 ### Delete Purchased: 
 Deletes all the items that have been checked (purchased) from the shopping list.
 
+
+## Food Inventory
+
+<img width="472" alt="Screenshot 2024-09-11 at 6 45 27 PM" src="https://github.com/user-attachments/assets/43352404-5754-4d3e-a0d9-5eaeec1f702c">
+
+The Food Inventory feature helps users track items they have added, along with their expiration dates. The following functionalities are provided:
+
+### Add Button (+): 
+Allows users to add an item to the inventory and specify the item's expiration date.
+### Book Button:
+Opens up personalized recipe recommendations based on the items currently in the inventory.
+### Notifications:
+Users receive a notification when the item is successfully added, and they will also get a reminder 24 hours before the item is about to expire.
+### Expired Items: 
+Items that have expired are highlighted in red.
+### Search:
+Users can search for specific items in the inventory.
+### Sorting & Filtering:
+Sort by Name: Sorts the items alphabetically by their name.
+Sort by Expiry Date: Sorts the items by their expiration date.
+Filter Expiring Soon: Users can filter the list to only show items that are close to their expiration date.
+### Delete Button:
+Deletes all items in the inventory.
+
