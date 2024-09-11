@@ -7,8 +7,8 @@ WasteNot is a Swift-based iOS application designed to help users manage their Sh
 2. [Tech Stack](#tech-stack)
 3. [Firebase Setup](#firebase-setup)
 4. [Edamam API](#edamam-api)
-5. [How to Run the App](#how-to-run-the-app)
-   - [User Guide](#user-guide)
+5. [User Guide](#user-guide)
+   
 
 ---
 
@@ -63,3 +63,28 @@ To use the recipe recommendation feature, sign up on [Edamam](https://developer.
 1. Clone the repository:
    ```bash
    git clone https://github.com/igurvir/WasteNot.git
+
+
+
+
+## User Guide
+![Shopping List](/Users/gurvir/Desktop/shopping-list.png)
+
+## Shopping List
+The Shopping List feature allows users to add items by specifying an item name, quantity, and category (Dairy, Meat, Fruit, Snacks, or Other). The items get automatically sorted into their respective categories and gets stored in the firebase database 
+
+### Add Button (+): Allows users to add items to the shopping list after inputting the name, quantity, and category.
+### Walmart Redirection (Chain Icon): 
+Redirects users to the Walmart website where they can search for and purchase the listed item.
+### Check Circle: 
+Users can mark items as purchased by checking this option. Checked items are visually indicated and excluded from shared lists.
+### Edit Button (Pencil Icon):
+Allows users to edit the item details (name, quantity, or category).
+
+At the top of the shopping list:
+
+### Share:
+Generates a PDF of the shopping list, excluding items marked as purchased, and allows users to share it via various platforms.
+### Delete Purchased: 
+Deletes all the items that have been checked (purchased) from the shopping list.
+
