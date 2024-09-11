@@ -117,3 +117,20 @@ Filter Expiring Soon: Users can filter the list to only show items that are clos
 ### Delete Button:
 Deletes all items in the inventory.
 
+
+## Recipe Recommendation
+
+<img width="474" alt="Screenshot 2024-09-11 at 6 47 09 PM" src="https://github.com/user-attachments/assets/76bfda77-fd96-4cac-afd7-b553580ccc39">
+
+
+The Book Icon in the Food Inventory section opens up a personalized recipe recommendation page. 
+This page suggests recipes based on the items that are currently expiring in the user's inventory.
+
+### Dynamic Recipe Suggestions: 
+The list of recipes is dynamically generated, meaning that each time the user clicks the book icon, new recipe suggestions are provided.
+### Recipe Links: 
+The user can click on either the recipe name or the "Open Recipe" URL to get redirected to the detailed recipe page.
+### Fresh Suggestions: 
+Every time the user accesses this section, they receive new and varied recipe recommendations for the expiring items, allowing for a diverse range of ideas.
+
+
