@@ -96,7 +96,7 @@ Deletes all the items that have been checked (purchased) from the shopping list.
 
 ## Food Inventory
 
-<img width="472" alt="Screenshot 2024-09-11 at 6 45 27 PM" src="https://github.com/user-attachments/assets/43352404-5754-4d3e-a0d9-5eaeec1f702c">
+<img width="300" alt="Screenshot 2024-09-11 at 6 45 27 PM" src="https://github.com/user-attachments/assets/43352404-5754-4d3e-a0d9-5eaeec1f702c">
 
 The Food Inventory feature helps users track items they have added, along with their expiration dates. The following functionalities are provided:
 
@@ -120,7 +120,7 @@ Deletes all items in the inventory.
 
 ## Recipe Recommendation
 
-<img width="474" alt="Screenshot 2024-09-11 at 6 47 09 PM" src="https://github.com/user-attachments/assets/76bfda77-fd96-4cac-afd7-b553580ccc39">
+<img width="300" alt="Screenshot 2024-09-11 at 6 47 09 PM" src="https://github.com/user-attachments/assets/76bfda77-fd96-4cac-afd7-b553580ccc39">
 
 
 The Book Icon in the Food Inventory section opens up a personalized recipe recommendation page. 
