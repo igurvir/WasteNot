@@ -69,10 +69,12 @@ To use the recipe recommendation feature, sign up on [Edamam](https://developer.
 
 
 ## User Guide
-![Shopping List](/Users/gurvir/Desktop/shopping-list.png)
+
 
 ## Shopping List
----<img width="367" alt="shopping-list" src="https://github.com/user-attachments/assets/26151005-2b3a-42fd-8d91-6590ef79dcee">
+---<img width="300" alt="shopping-list" src="https://github.com/user-attachments/assets/26151005-2b3a-42fd-8d91-6590ef79dcee">
+
+
 The Shopping List feature allows users to add items by specifying an item name, quantity, and category (Dairy, Meat, Fruit, Snacks, or Other). The items get automatically sorted into their respective categories and gets stored in the firebase database 
 
 ### Add Button (+): Allows users to add items to the shopping list after inputting the name, quantity, and category.
