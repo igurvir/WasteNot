@@ -16,7 +16,7 @@ WasteNot is a Swift-based iOS application designed to help users manage their Sh
   - Uses SwiftUI for the app’s user interface.
 - **Firebase Firestore**
   - Cloud Firestore is used to store and retrieve shopping list data.
-  -  **Edamam API**
+-  **Edamam API**
   - Integrated to provide recipe recommendations based on available food items.
 - **UserNotifications**
   - Push notifications for item expiration and reminders.
@@ -24,6 +24,7 @@ WasteNot is a Swift-based iOS application designed to help users manage their Sh
   - For generating and exporting shopping lists as PDFs.
 - **Charts Framework (iOS 16+)**
   - Used to create graphs in the Analytics view.
+
   
 ## Firebase Setup
 1. You will need to configure Firebase for iOS and download the `GoogleService-Info.plist`.
