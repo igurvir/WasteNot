@@ -1,6 +1,4 @@
-# Moving the User Guide under the Clone section and updating the table of contents reference.
 
-final_updated_content = """
 # WasteNot
 WasteNot is a Swift-based iOS application designed to help users manage their Shopping list with Walmart redirection and sharing lists with others, food inventory, reduce waste, and get **recipes based on the ingredients (expiring items)** nearing their expiration date and waste analysis of expired items.
 
