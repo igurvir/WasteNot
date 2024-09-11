@@ -77,7 +77,8 @@ To use the recipe recommendation feature, sign up on [Edamam](https://developer.
 
 The Shopping List feature allows users to add items by specifying an item name, quantity, and category (Dairy, Meat, Fruit, Snacks, or Other). The items get automatically sorted into their respective categories and gets stored in the firebase database 
 
-### Add Button (+): Allows users to add items to the shopping list after inputting the name, quantity, and category.
+### Add Button (+): 
+Allows users to add items to the shopping list after inputting the name, quantity, and category.
 ### Walmart Redirection (Chain Icon): 
 Redirects users to the Walmart website where they can search for and purchase the listed item.
 ### Check Circle: 
