@@ -151,6 +151,11 @@ A bar graph visually represents the total number of expired items for the curren
 The Clear Current Month Expired Items button allows users to reset the list and clear the expired item data for the current month.
 
 
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+
+
 
 
 
