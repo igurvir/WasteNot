@@ -133,4 +133,10 @@ The user can click on either the recipe name or the "Open Recipe" URL to get red
 ### Fresh Suggestions: 
 Every time the user accesses this section, they receive new and varied recipe recommendations for the expiring items, allowing for a diverse range of ideas.
 
+## Food Expiry Analytics
+The Analytics Tab displays detailed information about food items that have expired during the current month.
+
+
+
+
 
