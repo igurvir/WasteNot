@@ -1,3 +1,7 @@
+![Swift](https://img.shields.io/badge/Swift-5.0-orange.svg)
+![iOS](https://img.shields.io/badge/iOS-16.0%2B-blue.svg)
+![Firebase](https://img.shields.io/badge/Firebase-Firestore-yellow.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
 
 # WasteNot
 WasteNot is a Swift-based iOS application designed to help users manage their Shopping list with Walmart redirection and sharing lists with others, food inventory, reduce waste, and get **recipes based on the ingredients (expiring items)** nearing their expiration date and waste analysis of expired items.
@@ -35,7 +39,8 @@ View detailed analytics for expired items, including a graphical representation 
 Generate and share a PDF of your shopping list via various platforms (email, WhatsApp, etc.).
 
 ### Firestore Integration
-Sync shopping list data across devices using Firebase Firestore.
+SData gets real time synced to the backend Firebase Firestone DB.
+
 
 ---
 
