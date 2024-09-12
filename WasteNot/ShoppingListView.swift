@@ -2,6 +2,8 @@ import SwiftUI
 import FirebaseFirestore
 import FirebaseCore
 import Foundation
+import PDFKit
+import UIKit
 
 struct ShoppingItem: Identifiable, Codable {
     var id: String // Firestore document ID
@@ -236,22 +238,65 @@ struct ShoppingListView: View {
         }
     }
 
+
     private func shareShoppingList() {
         if shoppingItems.isEmpty {
             alertMessage = "Your shopping list is empty. Add items before sharing."
             showingAlert = true
             return
         }
-        
-        let itemDetails = shoppingItems.map { item in
-            "\(item.name) - Quantity: \(item.quantity) - Category: \(item.category)"
-        }.joined(separator: "\n")
 
-        let activityViewController = UIActivityViewController(activityItems: [itemDetails], applicationActivities: nil)
+        // Generate PDF
+        let pdfData = createPDF(from: shoppingItems)
+
+        // Write PDF to a temporary file
+        let tempDirectory = FileManager.default.temporaryDirectory
+        let pdfURL = tempDirectory.appendingPathComponent("ShoppingList.pdf")
+
+        do {
+            try pdfData.write(to: pdfURL)
+        } catch {
+            print("Failed to write PDF data: \(error)")
+            return
+        }
+
+        // Share the PDF
+        let activityViewController = UIActivityViewController(activityItems: [pdfURL], applicationActivities: nil)
         if let rootVC = UIApplication.shared.windows.first?.rootViewController {
             rootVC.present(activityViewController, animated: true, completion: nil)
         }
     }
+
+    // Simplified PDF generation
+    private func createPDF(from items: [ShoppingItem]) -> Data {
+        let pdfRenderer = UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: 8.5 * 72.0, height: 11.0 * 72.0)) // Standard letter page size
+        
+        let data = pdfRenderer.pdfData { context in
+            context.beginPage()
+            
+            // Simple title
+            let title = "Shopping List"
+            title.draw(at: CGPoint(x: 20, y: 20), withAttributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 24)])
+            
+            var yPosition: CGFloat = 60
+            
+            // Loop through each shopping item and add it to the PDF
+            for item in items {
+                let itemText = "\(item.name) - Quantity: \(item.quantity) - Category: \(item.category)"
+                itemText.draw(at: CGPoint(x: 20, y: yPosition), withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
+                yPosition += 20
+
+                // Start a new page if we reach the end of the current page
+                if yPosition > 11.0 * 72.0 - 40 {
+                    context.beginPage()
+                    yPosition = 20
+                }
+            }
+        }
+        
+        return data
+    }
+
 
     private func updateItemInFirestore(_ updatedItem: ShoppingItem) {
         // Use document ID to update Firestore
