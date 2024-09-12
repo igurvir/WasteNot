@@ -12,7 +12,8 @@ WasteNot is a Swift-based iOS application designed to help users manage their Sh
 3. [Firebase Setup](#firebase-setup)
 4. [Edamam API](#edamam-api)
 5. [User Guide](#user-guide)
-6. [Connect with Me on LinkedIn](#LinkedIn Profile)
+6. [LinkedIn Profile](#connect-with-me-on-linkedin)
+7. [License](#license)
 
 
 
