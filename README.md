@@ -136,6 +136,15 @@ Every time the user accesses this section, they receive new and varied recipe re
 ## Food Expiry Analytics
 The Analytics Tab displays detailed information about food items that have expired during the current month.
 
+<img width="300" alt="Screenshot 2024-09-11 at 6 48 19 PM" src="https://github.com/user-attachments/assets/c30fce9b-8dbe-4e08-890c-450d7dad7579">
+
+### Expired Items List: 
+Users can see a list of items that have expired along with the number of times each item was wasted during the current month.
+### Bar Graph: 
+A bar graph visually represents the total number of expired items for the current month.
+### Clear Button: 
+The Clear Current Month Expired Items button allows users to reset the list and clear the expired item data for the current month.
+
 
 
 
