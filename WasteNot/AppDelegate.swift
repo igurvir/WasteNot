@@ -27,4 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.banner, .sound, .badge])
     }
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        NotificationCenter.default.post(name: NSNotification.Name("requireAuthentication"), object: nil)
+    }
+
 }

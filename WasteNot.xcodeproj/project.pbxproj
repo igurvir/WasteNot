@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		19D5B145B317E9219946BE8F /* Pods_WasteNot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC93F5E715C617BFED31D00E /* Pods_WasteNot.framework */; };
+		E87BD0602C97C8F0004DD5F7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87BD05F2C97C8F0004DD5F7 /* LoginView.swift */; };
 		E8BF1C142C8FFC07001FCF06 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E8BF1C132C8FFC07001FCF06 /* GoogleService-Info.plist */; };
 		E8CD80542C8D3FFC009F1C09 /* WasteNotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CD80532C8D3FFC009F1C09 /* WasteNotApp.swift */; };
 		E8CD80562C8D3FFC009F1C09 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CD80552C8D3FFC009F1C09 /* ContentView.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		1606B2DC456B4424B158ACC4 /* Pods-WasteNot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WasteNot.debug.xcconfig"; path = "Target Support Files/Pods-WasteNot/Pods-WasteNot.debug.xcconfig"; sourceTree = "<group>"; };
 		57E3A6571BEC4C909AD229B2 /* Pods-WasteNot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WasteNot.release.xcconfig"; path = "Target Support Files/Pods-WasteNot/Pods-WasteNot.release.xcconfig"; sourceTree = "<group>"; };
+		E87BD05F2C97C8F0004DD5F7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E8BF1C132C8FFC07001FCF06 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E8CD80502C8D3FFC009F1C09 /* WasteNot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WasteNot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8CD80532C8D3FFC009F1C09 /* WasteNotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WasteNotApp.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				E8CD808A2C8EA61B009F1C09 /* AnalyticsView.swift */,
 				E8CD80942C8EC010009F1C09 /* ShoppingListView.swift */,
 				E8CD80962C8EC1EB009F1C09 /* EditItemView.swift */,
+				E87BD05F2C97C8F0004DD5F7 /* LoginView.swift */,
 				E8CD80572C8D3FFE009F1C09 /* Assets.xcassets */,
 				E8CD80592C8D3FFE009F1C09 /* Preview Content */,
 				E8CD806B2C8D5457009F1C09 /* TestSwipeActionsView.swift */,
@@ -266,6 +269,7 @@
 				E8CD80622C8D4046009F1C09 /* FoodItem.swift in Sources */,
 				E8CD80772C8E6437009F1C09 /* RecipeView.swift in Sources */,
 				E8CD80542C8D3FFC009F1C09 /* WasteNotApp.swift in Sources */,
+				E87BD0602C97C8F0004DD5F7 /* LoginView.swift in Sources */,
 				E8CD806E2C8D5801009F1C09 /* SearchBar.swift in Sources */,
 				E8CD807B2C8E6EB4009F1C09 /* RecipeDetailView.swift in Sources */,
 				E8CD806A2C8D5084009F1C09 /* FoodItemListView.swift in Sources */,

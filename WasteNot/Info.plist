@@ -13,10 +13,16 @@
             </array>
         </dict>
     </array>
+
+    <!-- Allows arbitrary loads for App Transport Security -->
     <key>NSAppTransportSecurity</key>
     <dict>
         <key>NSAllowsArbitraryLoads</key>
         <true/>
     </dict>
+
+    <!-- Face ID usage description for accessing biometrics -->
+    <key>NSFaceIDUsageDescription</key>
+    <string>We use Face ID to securely unlock the app.</string>
 </dict>
 </plist>
